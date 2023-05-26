@@ -12,7 +12,11 @@ public class ItemEntity : MonoBehaviour
     public int StackAmount
     {
         get => _stackAmount;
-        set => _stackAmount = Math.Clamp(value, 0, ItemData.StackSize);
+        set
+        {
+            _stackAmount = Math.Clamp(value, 0, ItemData.StackSize);
+            if (StackAmount <= 0) Destroy(this);
+        }
     }
 
     private void Start()

@@ -5,40 +5,41 @@ public class Inventory : MonoBehaviour
     public bool pickupItems = true;
 
     private int _slots;
-    private ItemEntity[] _items = new ItemEntity[10];
+    private Item[] _items = new Item[10];
 
     public int MaxSlots 
     {
         get => _slots;
         set 
         {
-            ItemEntity[] items = new ItemEntity[value];
+            Item[] items = new Item[value];
             _slots = value;
             _items.CopyTo(items, 0);
             _items = items;
         }
     }
 
-    public ItemEntity this[int index] => _items[index];
-    public ItemEntity this[string id]
+    public Item this[int index] => _items[index];
+    public Item this[string id]
     {
         get
         {
-            foreach (ItemEntity item in _items)
+            foreach (Item item in _items)
             {
-                if (item.ItemData.ID == id) return item;
+                if (item.ID == id) return item;
             }
             return null;
         }
     } 
-
-    void Start()
+    
+    public void AddItem(ItemEntity item)
     {
-        
-    }
-
-    void Update()
-    {
-        
+        for (int i = 0; i < _items.Length; i++)
+        {
+            if (_items[i] == null)
+            {
+                _items[i] = item;
+            }
+        }
     }
 }
