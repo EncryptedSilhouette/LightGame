@@ -32,7 +32,7 @@ public class ItemCollector : MonoBehaviour
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.transform.position, PickUpRange, LayerMask.GetMask("Item")))
         {
-            collider.GetComponent<ItemEntity>()?.
+            //collider.GetComponent<ItemEntity>()?.
         }
     }
 }

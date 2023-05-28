@@ -4,17 +4,16 @@ using UnityEngine;
 public class ItemEntity : MonoBehaviour
 {
     [SerializeField]
-    public ItemData ItemData;
+    public Item Item;
 
-    private int _stackAmount;
     private float _pickeupTime;
 
     public int StackAmount
     {
-        get => _stackAmount;
+        get => Item.StackSize;
         set
         {
-            _stackAmount = Math.Clamp(value, 0, ItemData.StackSize);
+            Item.Amount = Math.Clamp(value, 0, Item.StackSize);
             if (StackAmount <= 0) Destroy(this);
         }
     }
@@ -26,9 +25,9 @@ public class ItemEntity : MonoBehaviour
 
     public void Stack(ItemEntity other)
     {
-        if (other.ItemData.ID != ItemData.ID) return;
+        if (other.Item.ID != Item.ID) return;
         int amount = StackAmount + other.StackAmount;
         StackAmount = amount;
-        other.StackAmount = amount - ItemData.StackSize; 
+        other.StackAmount = amount - Item.StackSize; 
     }    
 }

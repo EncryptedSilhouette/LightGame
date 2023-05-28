@@ -3004,7 +3004,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c9c4050178adb49b05a57042bf26c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupItems: 1
+  _slots: 0
+  _items:
+  - Amount: 12
+    ItemData: {fileID: 11400000, guid: befb2a38d4fc4854aac606948ff6f762, type: 2}
 --- !u!114 &1541949479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3104,6 +3107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1624718165}
+  - component: {fileID: 1624718166}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3126,6 +3130,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1624718166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624718164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af460fc88c1511841ab0361c2cd42b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1625781376
 GameObject:
   m_ObjectHideFlags: 0

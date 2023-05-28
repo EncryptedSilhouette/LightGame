@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5436797334920292976}
   - component: {fileID: 9008469359316850130}
   m_Layer: 6
-  m_Name: Item
+  m_Name: ItemEntityPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

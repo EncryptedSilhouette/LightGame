@@ -1,45 +1,60 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public bool pickupItems = true;
-
+    [SerializeField]
     private int _slots;
-    private Item[] _items = new Item[10];
+    [SerializeField]
+    private List<Item> _items = new();
 
-    public int MaxSlots 
+    public int Slots
     {
-        get => _slots;
-        set 
+        get => _slots; 
+        set
         {
-            Item[] items = new Item[value];
             _slots = value;
-            _items.CopyTo(items, 0);
-            _items = items;
+            _items.Capacity = value < _items.Capacity ? _items.Capacity : value;
         }
     }
 
-    public Item this[int index] => _items[index];
-    public Item this[string id]
+    public Item? this[int index] 
     {
         get
         {
-            foreach (Item item in _items)
-            {
-                if (item.ID == id) return item;
-            }
-            return null;
+            if (index > _items.Count - 1 || index < 0) return null;
+            return _items[index];
         }
     } 
-    
-    public void AddItem(ItemEntity item)
+    public Item? this[string id]
     {
-        for (int i = 0; i < _items.Length; i++)
+        get
         {
-            if (_items[i] == null)
+            foreach (Item item in _items) if (item.ID == id) return item;
+            return null;
+        }
+    }
+
+    private void Awake()
+    {
+        Slots = _slots;
+    }
+
+    public bool AddItem(Item item)
+    {
+        for (int i = 0; i < _items.Count; i++)
+        {
+            if (_items[i].ID == null)
             {
                 _items[i] = item;
+                return true;
             }
         }
+        return false;
+    }
+
+    public void AddItem(Item item, int index)
+    {
+        if (index > _items.Count - 1) return;
     }
 }
