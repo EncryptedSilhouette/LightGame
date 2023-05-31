@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
 
     public bool AddItem(Item item)
     {
-        for (int i = 0; i < _items.Count; i++)
+        for (int i = 0; i < _items.Capacity; i++)
         {
             if (_items[i].ID == null)
             {
@@ -53,8 +53,42 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void AddItem(Item item, int index)
+    public void AddItem(Item item, int index) 
     {
         if (index > _items.Count - 1) return;
+    }
+
+    public void RemoveItem(int index)
+    {
+        _items[index] = new();
+    }
+
+    public void RemoveItem(int index, out Item item)
+    {
+        item = _items[index];
+        _items[index] = new();
+    }
+
+    public void RemoveItem(string id) 
+    {
+        for (int i = 0; i < _items.Capacity; i++)
+        {
+            if (_items[i].ID == id) _items[i] = new();
+            return;
+        }
+    }
+
+    public void RemoveItem(string id, out Item item)
+    {
+        for (int i = 0; i < _items.Capacity; i++)
+        {
+            if (_items[i].ID == id)
+            {
+                item = _items[i];
+                _items[i] = new();
+                return;
+            }
+        }
+        item = new();
     }
 }
