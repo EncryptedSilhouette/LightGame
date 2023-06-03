@@ -1,31 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
     [SerializeField]
-    private float incrementValue = 0.2f;
+    public Transform Target;
 
-    bool invert = false;
-    private float colorVal;
-    Color color = Color.black;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    void Update()
-    {
-        colorVal += incrementValue * Time.deltaTime * (invert ? -1 : 1);
-
-        if (colorVal >= 1) invert = true;
-        else if (colorVal <= 0) invert = false;
-
-        Mathf.Clamp(colorVal, 0, 1);
-
-        color.r = color.g = color.b = colorVal;
-
-        Camera.main.backgroundColor = color;
+        if (Target is null) return;
+        transform.parent = Target;
     }
 }
